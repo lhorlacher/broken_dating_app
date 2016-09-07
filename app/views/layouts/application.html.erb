@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dating</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+  <body>
+	  <nav>
+	    <div class="nav-wrapper">
+	    <%= link_to 'Home', root_path %>
+	    <ul id="nav-mobile" class="right hide-on-med-and-down">
+	      <% if user_signed_in? %>
+		    <li> <%= link_to 'Account', edit_user_registration_path %> </li>
+		    <% if Profile.find_by(user_id: current_user.id) != nil %>
+		    	<li> <%= link_to 'My Profile', edit_user_profile_path(current_user) %> </li>
+		    <% else %>
+		    	<li> <%= link_to 'My Profile', new_user_profile_path(current_user) %> </li>
+		    <% end %>
+		    <li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
+		  <% else %>
+		  	<li> <%= link_to 'Log In', new_user_session_path %> </li>
+		  <% end %>
+	      </ul>
+	    </div>
+	  </nav>
+	  <div class="container">
+	    <%= yield %>
+	  </div>
+  </body>
+</html>

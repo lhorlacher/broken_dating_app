@@ -1,0 +1,8 @@
+<h1>Your Picks</h1>
+
+<% @picks.each do |pick| %>
+	<div class='card-panel hoverable'>
+		<h5> <%= "#{pick.first_name} #{pick.last_name[0]}." %> </h5>
+		<p> <%= pick.headline %> </p>
+	</div>
+<% end %>

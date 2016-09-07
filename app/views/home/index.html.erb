@@ -1,0 +1,18 @@
+<h1>A Regular Dating Website</h1>
+
+<% if user_signed_in? %>
+	<%= link_to 'View Picks', picks_path %>
+	<%= render(partial: 'form') %>
+	<% if params[:search] %>
+		<% @matches.each do |profile| %>
+			<div class='card-panel hoverable'>
+				<% person = User.find(profile.user_id) %>
+				<%= link_to "#{person.first_name} #{person.last_name[0]}", user_profile_path(profile) %>
+			</div>
+		<% end %>
+	<% end %>
+<% else %>
+	<h4> <%= link_to 'Sign In', new_user_session_path %> or
+	<%= link_to 'Sign Up', new_user_registration_path %> to start finding your matches! </h4>
+<% end %>
+

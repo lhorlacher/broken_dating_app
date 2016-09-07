@@ -1,0 +1,72 @@
+<%= form_for(profile) do |f| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, required: true, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height_in_inches %>
+    <%= f.number_field :height_in_inches %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hobbies %>
+    <%= f.text_field :hobbies %>
+  </div>
+
+  <div class="field">
+    <%= f.label :books %>
+    <%= f.text_field :books %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shows %>
+    <%= f.text_field :shows %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fitness_level %>
+    <%= f.text_field :fitness_level %>
+  </div>
+
+  <div class="field">
+    <%= f.label :occupation %>
+    <%= f.text_field :occupation %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

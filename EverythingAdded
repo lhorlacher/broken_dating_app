@@ -1,0 +1,88 @@
+  
+Gemfile
+
+In general:
+  gem 'devise'
+  gem 'materialize'
+
+In Test:
+  (remove: gem 'bye-bug')
+  gem 'pry'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+
+In Development:
+  gem 'faker'
+  gem 'annotate'
+
+For rspec:
+  $ `rails g rspec:install`
+  in .rspec
+  	--format progress
+  	--format documentation
+
+For simplecov:
+  in rails_helper:
+    require 'simplecov'
+    SimpleCov.start
+  in .gitignore:
+    /coverage
+
+For database_cleaner:
+  in rails_helper:
+  	(--below config--)
+  	config.before(:suite) do
+  	  DatabaseCleaner.strategy = :transaction
+  	  DatabaseCleaner.clean_with(:truncation)
+  	end
+
+  	config.around(:each) do |example|
+  	  DatabaseCleaner.cleaning do
+  	    example.run
+  	  end
+  	end
+
+For shoulda-matchers:
+  in rails_helper:
+    (--outside rails config--)
+    Shoulda::Matchers.configure do |config|
+      config.integrate do |with|
+        # Choose a test framework:
+        with.test_framework :rspec
+
+        # Or, choose the following (which implies all of the above):
+        with.library :rails
+      end
+    end
+
+For Materialize:
+  in application.scss:
+  	@import "materialize";
+
+  	@import "materialize/components/color";
+  	$primary-color: color("blue", "lighten-2") !default;
+  	@import 'materialize';
+
+  in application.js:
+  	//= require materialize-sprockets
+
+  added class: 'btn' to buttons on sign up/in forms
+
+Standard Features:
+  $ rails g model user first_name last_name
+  $ rails g controller home indexs
+  first_name and last_name to registration forms
+  first_name and last_name to params
+  devise route updated
+  root set to home#index
+  navbar in layout
+
+For devise:
+  $ rails g devise:install
+  $ rails g devise User
+  $ rails g devise:controllers users
+  $ rails g devise:views
